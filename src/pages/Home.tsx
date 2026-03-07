@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { motion } from 'motion/react';
+import { Link } from 'react-router-dom';
 import { Hero } from '../components/Hero';
-import { About } from '../components/About';
-import { ProjectCard } from '../components/ProjectCard';
-import { ProjectDetail } from '../components/ProjectDetail';
+import { AboutMeStacked } from '../components/AboutMeStacked';
 import { ExperienceSection } from '../components/ExperienceSection';
 import { EducationSection } from '../components/EducationSection';
 import { SkillsSection } from '../components/SkillsSection';
@@ -12,7 +11,6 @@ import { BlogSection } from '../components/BlogSection';
 import { MediaSection } from '../components/MediaSection';
 import { ContactSection } from '../components/ContactSection';
 import { Marquee } from '../components/Marquee';
-import { PROJECTS, Project } from '../constants';
 
 const SectionWrapper = ({ children, number, id }: { children: React.ReactNode, number: string, id?: string }) => (
   <motion.div
@@ -32,45 +30,50 @@ const SectionWrapper = ({ children, number, id }: { children: React.ReactNode, n
 );
 
 export const Home = () => {
-  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
-
-  useEffect(() => {
-    if (selectedProject) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'unset';
-    }
-  }, [selectedProject]);
-
   return (
     <div className="relative">
       <Hero />
       
       <SectionWrapper number="01" id="about">
-        <About />
+        <AboutMeStacked />
       </SectionWrapper>
       
       <SectionWrapper number="02" id="projects">
         <section className="section-padding relative overflow-hidden">
           <div className="absolute top-0 left-0 w-[40%] h-[40%] bg-blue-500/5 blur-[120px] rounded-full pointer-events-none" />
           
-          <div className="space-y-20 relative z-10">
-            <div className="space-y-4">
+          <div className="max-w-4xl relative z-10 space-y-10">
+            <div className="space-y-6">
               <h2 className="font-serif italic text-5xl md:text-7xl font-light text-zinc-100 tracking-tight">
-                Selected <span className="text-zinc-500 not-italic">Explorations</span>
+                Selected <span className="text-zinc-500 not-italic">Works</span>
               </h2>
-              <p className="text-zinc-500 font-mono text-xs uppercase tracking-[0.3em]">A curated gallery of engineering solutions</p>
+              <div className="space-y-6 max-w-2xl">
+                <p className="text-xl md:text-2xl text-zinc-400 font-light leading-relaxed">
+                  I've engineered a diverse range of digital solutions, from <span className="text-zinc-100 font-medium">high-performance backend systems</span> to 
+                  <span className="text-zinc-100 font-medium">immersive frontend experiences</span>.
+                </p>
+                <p className="text-zinc-500 text-lg font-light leading-relaxed">
+                  Each project is a deep dive into specific technical challenges, focusing on scalability, 
+                  performance, and refined user interactions.
+                </p>
+              </div>
             </div>
             
-            <div className="grid md:grid-cols-2 gap-12">
-              {PROJECTS.map(project => (
-                <ProjectCard 
-                  key={project.id} 
-                  project={project} 
-                  onClick={() => setSelectedProject(project)} 
-                />
-              ))}
-            </div>
+            <motion.div
+              whileHover={{ x: 10 }}
+              transition={{ type: "spring", stiffness: 400, damping: 10 }}
+            >
+              <Link 
+                to="/projects" 
+                className="inline-flex items-center gap-4 group"
+              >
+                <span className="text-sm font-mono uppercase tracking-[0.3em] text-zinc-100 group-hover:text-blue-400 transition-colors">
+                  Explore all projects
+                </span>
+                <div className="w-12 h-[1px] bg-zinc-800 group-hover:bg-blue-400 transition-colors" />
+                <div className="w-2 h-2 rounded-full bg-blue-500 animate-pulse" />
+              </Link>
+            </motion.div>
           </div>
         </section>
       </SectionWrapper>
@@ -111,13 +114,6 @@ export const Home = () => {
       <SectionWrapper number="08" id="contact">
         <ContactSection />
       </SectionWrapper>
-
-      {selectedProject && (
-        <ProjectDetail 
-          project={selectedProject} 
-          onClose={() => setSelectedProject(null)} 
-        />
-      )}
     </div>
   );
 };

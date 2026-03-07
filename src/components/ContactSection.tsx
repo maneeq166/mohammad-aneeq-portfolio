@@ -34,19 +34,19 @@ export const ContactSection = () => {
                 href="https://github.com/maneeq166" 
                 target="_blank" 
                 rel="noopener noreferrer" 
-                className="group flex items-center justify-between p-6 glass-card rounded-3xl border-zinc-800/50 hover:bg-zinc-900/80 transition-all"
+                className="group flex items-center justify-between gap-4 p-6 glass-card rounded-3xl border-zinc-800/50 hover:bg-zinc-900/80 transition-all"
               >
                 <span className="text-sm font-mono uppercase tracking-widest text-zinc-500 group-hover:text-zinc-100">GitHub</span>
-                <Github className="w-4 h-4 text-zinc-700 group-hover:text-zinc-100" />
+                <Github className="w-4 h-4 text-zinc-700 group-hover:text-zinc-100 shrink-0" />
               </a>
               <a 
                 href="https://linkedin.com/in/mohammad-aneeq" 
                 target="_blank" 
                 rel="noopener noreferrer" 
-                className="group flex items-center justify-between p-6 glass-card rounded-3xl border-zinc-800/50 hover:bg-zinc-900/80 transition-all"
+                className="group flex items-center justify-between gap-4 p-6 glass-card rounded-3xl border-zinc-800/50 hover:bg-zinc-900/80 transition-all"
               >
                 <span className="text-sm font-mono uppercase tracking-widest text-zinc-500 group-hover:text-zinc-100">LinkedIn</span>
-                <Linkedin className="w-4 h-4 text-zinc-700 group-hover:text-zinc-100" />
+                <Linkedin className="w-4 h-4 text-zinc-700 group-hover:text-zinc-100 shrink-0" />
               </a>
             </div>
           </div>

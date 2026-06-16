@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { motion } from 'motion/react';
 import { Link } from 'react-router-dom';
 import { Hero } from '../components/Hero';
@@ -10,7 +10,7 @@ import { GitHubActivity } from '../components/GitHubActivity';
 import { MediaSection } from '../components/MediaSection';
 import { ContactSection } from '../components/ContactSection';
 import { Marquee } from '../components/Marquee';
-const SectionWrapper = ({ children, number, id }: { children: React.ReactNode, number: string, id?: string }) => (
+const SectionWrapper = memo(({ children, number, id }: { children: React.ReactNode, number: string, id?: string }) => (
   <motion.div
     id={id}
     initial={{ opacity: 0, y: 50 }}
@@ -25,7 +25,7 @@ const SectionWrapper = ({ children, number, id }: { children: React.ReactNode, n
     </div>
     {children}
   </motion.div>
-);
+));
 
 export const Home = () => {
   return (
@@ -97,12 +97,6 @@ export const Home = () => {
         <GitHubActivity />
       </SectionWrapper>
       
-      {/* <SectionWrapper number="06" id="blog">
-        <div className="bg-zinc-900/20">
-          <BlogSection />
-        </div>
-      </SectionWrapper> */}
-
       <SectionWrapper number="06" id="media">
         <MediaSection />
       </SectionWrapper>

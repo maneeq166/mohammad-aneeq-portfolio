@@ -12,7 +12,6 @@ const EducationPage = lazy(() => import('./pages/EducationPage').then(m => ({ de
 const ActivityPage = lazy(() => import('./pages/ActivityPage').then(m => ({ default: m.ActivityPage })));
 const MediaPage = lazy(() => import('./pages/MediaPage').then(m => ({ default: m.MediaPage })));
 const ContactPage = lazy(() => import('./pages/ContactPage').then(m => ({ default: m.ContactPage })));
-// const BlogPage = lazy(() => import('./pages/BlogPage').then(m => ({ default: m.BlogPage })));
 const ResumePage = lazy(() => import('./pages/ResumePage').then(m => ({ default: m.ResumePage })));
 const AIAssistantSection = lazy(() => import('./components/AIAssistantSection').then(m => ({ default: m.AIAssistantSection })));
 
@@ -95,7 +94,6 @@ function AnimatedRoutes() {
             <Route path="/experience" element={<ExperiencePage />} />
             <Route path="/education" element={<EducationPage />} />
             <Route path="/activity" element={<ActivityPage />} />
-            {/* <Route path="/blog" element={<BlogPage />} /> */}
             <Route path="/media" element={<MediaPage />} />
             <Route path="/resume" element={<ResumePage />} />
             <Route path="/contact" element={<ContactPage />} />

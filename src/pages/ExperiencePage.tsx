@@ -1,4 +1,3 @@
-import React from 'react';
 import { ExperienceSection } from '../components/ExperienceSection';
 
 export const ExperiencePage = () => {

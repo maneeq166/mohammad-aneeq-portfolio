@@ -1,4 +1,3 @@
-import React from 'react';
 import { GitHubActivity } from '../components/GitHubActivity';
 
 export const ActivityPage = () => {

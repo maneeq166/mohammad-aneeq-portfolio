@@ -1,18 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { motion } from 'motion/react';
 import { ProjectDetail } from '../components/ProjectDetail';
 import { PROJECTS, Project } from '../constants';
-import { ExternalLink, Layout, Globe, Zap, Code, Compass } from 'lucide-react';
-
-const ProjectIcon = ({ id }: { id: string }) => {
-  switch (id) {
-    case 'jamia-connect': return <Globe className="w-6 h-6 text-blue-400" />;
-    case 'handicraft-ecommerce': return <Layout className="w-6 h-6 text-orange-400" />;
-    case 'url-shortener': return <Zap className="w-6 h-6 text-purple-400" />;
-    case 'pathpilot': return <Compass className="w-6 h-6 text-cyan-400" />;
-    default: return <Code className="w-6 h-6 text-zinc-400" />;
-  }
-};
+import { ExternalLink } from 'lucide-react';
 
 export const ProjectsPage = () => {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
@@ -61,8 +51,8 @@ export const ProjectsPage = () => {
               onClick={() => setSelectedProject(project)}
               className="group relative p-6 bg-zinc-900/30 border border-zinc-800/50 rounded-2xl hover:bg-zinc-900/60 hover:border-zinc-700/50 transition-all cursor-pointer flex items-center gap-5"
             >
-              <div className="flex-shrink-0 w-14 h-14 rounded-xl bg-zinc-950 border border-zinc-800 flex items-center justify-center group-hover:border-zinc-600 transition-colors shadow-inner">
-                <ProjectIcon id={project.id} />
+              <div className="flex-shrink-0 w-14 h-14 rounded-xl bg-zinc-950 border border-zinc-800 overflow-hidden group-hover:border-zinc-600 transition-colors shadow-inner">
+                <img src={project.image} alt={project.title} loading="lazy" decoding="async" className="w-full h-full object-cover" />
               </div>
               
               <div className="space-y-1 flex-1">

@@ -1,3 +1,8 @@
+import handicraftImg from './assets/handicraft.webp';
+import jamiaConnectImg from './assets/jamia-connect.webp';
+import pathpilotImg from './assets/pathpilot.webp';
+import urlShortenerImg from './assets/url-shortener.webp';
+
 export interface Project {
   id: string;
   title: string;
@@ -41,7 +46,7 @@ export const PROJECTS: Project[] = [
     longDescription: "JamiaConnect is a comprehensive social and informational hub built from scratch to serve the student community at JMI. It integrates communication tools with academic resources.",
     summary: "A full-stack MERN platform serving 20,000+ JMI students with real-time chat, blogging, notice board, and academic resource sharing.",
     tags: ["MongoDB", "Express", "React", "Node.js", "Cloudinary", "Socket.io"],
-    image: "https://picsum.photos/seed/jamia/800/600",
+    image: jamiaConnectImg,
     demo: "https://jamia-connect.vercel.app/",
     github: "https://github.com/maneeq166",
     features: [
@@ -61,7 +66,7 @@ export const PROJECTS: Project[] = [
     longDescription: "A complete e-commerce solution featuring product management, secure payments, and a refined shopping experience.",
     summary: "A full-stack artisanal marketplace with role-based access, payment gateway integration, and dynamic product filtering built on Next.js.",
     tags: ["Next.js", "Node.js", "Express", "MongoDB", "Vercel", "Render"],
-    image: "https://picsum.photos/seed/craft/800/600",
+    image: handicraftImg,
     demo: "https://handicreaft-client.vercel.app/",
     github: "https://github.com/maneeq166",
     features: [
@@ -80,7 +85,7 @@ export const PROJECTS: Project[] = [
     longDescription: "A full-stack URL shortening service that provides custom slugs, QR code generation, and detailed click tracking for users.",
     summary: "A professional link management platform with custom slugs, QR codes, and detailed click analytics powered by a high-concurrency Node.js backend.",
     tags: ["Node.js", "Express", "MongoDB", "React", "JWT", "Recharts"],
-    image: "https://picsum.photos/seed/url/800/600",
+    image: urlShortenerImg,
     demo: "https://url-shortener-aneeq.vercel.app/",
     github: "https://github.com/maneeq166",
     features: [
@@ -99,7 +104,7 @@ export const PROJECTS: Project[] = [
     longDescription: "PathPilot is a full-stack AI-powered career intelligence platform designed to help students and early-career professionals improve their employability. The system analyzes uploaded resumes, extracts skills, education, and experience using resume parsing techniques, and provides personalized career recommendations. It also supports job matching, interview preparation, AI-generated feedback, and progress tracking. The platform combines traditional NLP, pattern-based extraction, and AI-powered analysis to deliver actionable career insights. PathPilot aims to bridge the gap between academic learning and industry requirements by helping users identify skill gaps, discover relevant opportunities, and follow structured career roadmaps.",
     summary: "An AI-powered career intelligence platform that parses resumes, extracts skills, and delivers personalized job matching, interview prep, and progress tracking.",
     tags: ["React.js", "Tailwind CSS", "Node.js", "Express", "MongoDB", "JWT"],
-    image: "https://picsum.photos/seed/pathpilot/800/600",
+    image: pathpilotImg,
     demo: "https://path-pilot-peach.vercel.app/",
     github: "https://github.com/maneeq166",
     features: [

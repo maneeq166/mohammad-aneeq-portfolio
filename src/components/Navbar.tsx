@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { memo, useState, useEffect } from 'react';
 import { motion, useScroll, useSpring } from 'motion/react';
 import { Link, useLocation } from 'react-router-dom';
 
@@ -8,7 +8,7 @@ const navItems = [
   { name: 'Contact', path: '/contact', hash: '#contact' },
 ] as const;
 
-export const Navbar = () => {
+export const Navbar = memo(() => {
   const location = useLocation();
   const isHome = location.pathname === '/';
   const [scrolled, setScrolled] = useState(false);
@@ -89,4 +89,4 @@ export const Navbar = () => {
       </motion.div>
     </nav>
   );
-};
+});

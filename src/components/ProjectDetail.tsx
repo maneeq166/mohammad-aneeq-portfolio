@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { motion } from 'motion/react';
 import { 
   Github, 
@@ -69,6 +69,7 @@ export const ProjectDetail = ({ project, onClose }: { project: Project; onClose:
               src={project.image}
               alt={project.title}
               loading="lazy"
+              decoding="async"
               className="w-full h-full object-cover"
               referrerPolicy="no-referrer"
             />

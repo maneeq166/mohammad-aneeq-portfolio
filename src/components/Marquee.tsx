@@ -1,7 +1,7 @@
-import React from 'react';
+import { memo } from 'react';
 import { motion } from 'motion/react';
 
-export const Marquee = ({ text, speed = 20 }: { text: string, speed?: number }) => {
+export const Marquee = memo(({ text, speed = 20 }: { text: string, speed?: number }) => {
   return (
     <div className="relative flex overflow-x-hidden border-y border-zinc-800/50 bg-zinc-900/10 py-4">
       <motion.div
@@ -28,4 +28,4 @@ export const Marquee = ({ text, speed = 20 }: { text: string, speed?: number }) 
       </motion.div>
     </div>
   );
-};
+});

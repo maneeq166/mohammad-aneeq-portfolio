@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import { memo, useRef, type MouseEvent } from "react";
 import { motion, useTransform, useMotionValue, useSpring } from "motion/react";
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -9,7 +9,7 @@ const WAVE_COLORS = ["#3b82f6", "#60a5fa", "#2563eb", "#93c5fd", "#1d4ed8"];
 const WAVE_GRADIENT = `linear-gradient(125deg, ${WAVE_COLORS.join(", ")})`;
 const WAVE_GRADIENT_INVERSE = `linear-gradient(305deg, ${[...WAVE_COLORS].reverse().join(", ")})`;
 
-export const Hero = () => {
+export const Hero = memo(() => {
   const containerRef = useRef<HTMLDivElement>(null);
 
   const mouseX = useMotionValue(0.5);
@@ -19,7 +19,7 @@ export const Hero = () => {
   const mouseXSpring = useSpring(mouseX, springConfig);
   const mouseYSpring = useSpring(mouseY, springConfig);
 
-  const handleMouseMove = (e: React.MouseEvent) => {
+  const handleMouseMove = (e: MouseEvent) => {
     if (!containerRef.current) return;
     const { left, top, width, height } =
       containerRef.current.getBoundingClientRect();
@@ -152,4 +152,4 @@ export const Hero = () => {
       </motion.div>
     </section>
   );
-};
+});

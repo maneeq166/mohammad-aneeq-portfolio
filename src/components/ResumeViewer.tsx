@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { motion } from 'motion/react';
 import { Download, ExternalLink, FileText, AlertTriangle } from 'lucide-react';
 

@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { motion, useMotionValue, useSpring } from 'motion/react';
 
 export const CustomCursor = () => {
-  const [isVisible, setIsVisible] = useState(false);
   const [isClicked, setIsClicked] = useState(false);
+  const isVisibleRef = useRef(false);
+  const [show, setShow] = useState(false);
   const cursorX = useMotionValue(-100);
   const cursorY = useMotionValue(-100);
 
@@ -15,15 +16,24 @@ export const CustomCursor = () => {
     const moveCursor = (e: MouseEvent) => {
       cursorX.set(e.clientX);
       cursorY.set(e.clientY);
-      if (!isVisible) setIsVisible(true);
+      if (!isVisibleRef.current) {
+        isVisibleRef.current = true;
+        setShow(true);
+      }
     };
 
     const handleMouseDown = () => setIsClicked(true);
     const handleMouseUp = () => setIsClicked(false);
-    const handleMouseLeave = () => setIsVisible(false);
-    const handleMouseEnter = () => setIsVisible(true);
+    const handleMouseLeave = () => {
+      isVisibleRef.current = false;
+      setShow(false);
+    };
+    const handleMouseEnter = () => {
+      isVisibleRef.current = true;
+      setShow(true);
+    };
 
-    window.addEventListener('mousemove', moveCursor);
+    window.addEventListener('mousemove', moveCursor, { passive: true });
     window.addEventListener('mousedown', handleMouseDown);
     window.addEventListener('mouseup', handleMouseUp);
     document.addEventListener('mouseleave', handleMouseLeave);
@@ -36,7 +46,7 @@ export const CustomCursor = () => {
       document.removeEventListener('mouseleave', handleMouseLeave);
       document.removeEventListener('mouseenter', handleMouseEnter);
     };
-  }, [isVisible, cursorX, cursorY]);
+  }, [cursorX, cursorY]);
 
   return (
     <motion.div
@@ -46,8 +56,8 @@ export const CustomCursor = () => {
         translateY: cursorYSpring,
         x: '-50%',
         y: '-50%',
-        opacity: isVisible ? 1 : 0,
-        scale: isVisible ? (isClicked ? 0.8 : 1) : 0,
+        opacity: show ? 1 : 0,
+        scale: show ? (isClicked ? 0.8 : 1) : 0,
       }}
       transition={{ type: 'spring', damping: 20, stiffness: 300 }}
     >

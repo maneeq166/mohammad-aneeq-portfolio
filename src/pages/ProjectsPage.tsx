@@ -2,16 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'motion/react';
 import { ProjectDetail } from '../components/ProjectDetail';
 import { PROJECTS, Project } from '../constants';
-import { ExternalLink, Github, Layout, Server, Database, Bot, Globe, Zap, Code } from 'lucide-react';
+import { ExternalLink, Layout, Globe, Zap, Code, Compass } from 'lucide-react';
 
 const ProjectIcon = ({ id }: { id: string }) => {
   switch (id) {
-    case 'binbot': return <Bot className="w-6 h-6 text-emerald-400" />;
     case 'jamia-connect': return <Globe className="w-6 h-6 text-blue-400" />;
     case 'handicraft-ecommerce': return <Layout className="w-6 h-6 text-orange-400" />;
     case 'url-shortener': return <Zap className="w-6 h-6 text-purple-400" />;
-    case 'slack-meme-bot': return <Bot className="w-6 h-6 text-pink-400" />;
-    case 'discord-meme-bot': return <Bot className="w-6 h-6 text-indigo-400" />;
+    case 'pathpilot': return <Compass className="w-6 h-6 text-cyan-400" />;
     default: return <Code className="w-6 h-6 text-zinc-400" />;
   }
 };

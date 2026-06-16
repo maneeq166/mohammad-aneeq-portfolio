@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" role="img" aria-label="Mohammad Aneeq">
+  <rect width="64" height="64" rx="16" fill="#050505"/>
+  <rect x="0.5" y="0.5" width="63" height="63" rx="15.5" stroke="#27272a" stroke-opacity="0.9"/>
+  <text
+    x="30"
+    y="41"
+    text-anchor="middle"
+    font-family="Georgia, 'Times New Roman', serif"
+    font-size="26"
+    font-style="italic"
+    fill="#f4f4f5"
+  >MA</text>
+  <circle cx="46" cy="22" r="4" fill="#3b82f6"/>
+</svg>

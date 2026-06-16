@@ -3,6 +3,7 @@ export interface Project {
   title: string;
   description: string;
   longDescription: string;
+  summary: string;
   tags: string[];
   image: string;
   github?: string;
@@ -32,38 +33,13 @@ export interface MediaItem {
   image?: string;
 }
 
-export interface BlogPost {
-  id: string;
-  title: string;
-  summary: string;
-  date: string;
-  readTime: string;
-  tags: string[];
-}
-
 export const PROJECTS: Project[] = [
-  {
-    id: "binbot",
-    title: "BinBot",
-    description: "AI-powered waste classification SaaS for sustainable disposal.",
-    longDescription: "BinBot is a cutting-edge SaaS platform that leverages artificial intelligence to classify waste into categories like recyclable, organic, and hazardous. It aims to simplify waste management for individuals and organizations using advanced image recognition.",
-    tags: ["Node.js", "Express", "React", "MongoDB", "Google Gemini"],
-    image: "https://picsum.photos/seed/binbot/800/600",
-    github: "https://github.com/maneeq166",
-    features: [
-      "AI-driven waste classification using Google Gemini",
-      "Real-time image recognition for waste sorting",
-      "User dashboard for tracking disposal history",
-      "Educational resources on sustainable waste management",
-      "Scalable SaaS architecture for multi-user support"
-    ],
-    architecture: "The application uses a React frontend for a seamless user experience. The backend is powered by Node.js and Express, with MongoDB as the primary database. Integration with Google Gemini API enables high-accuracy image classification and waste sorting logic."
-  },
   {
     id: "jamia-connect",
     title: "JamiaConnect",
     description: "An all-in-one community platform for 20,000+ students at JMI.",
     longDescription: "JamiaConnect is a comprehensive social and informational hub built from scratch to serve the student community at JMI. It integrates communication tools with academic resources.",
+    summary: "A full-stack MERN platform serving 20,000+ JMI students with real-time chat, blogging, notice board, and academic resource sharing.",
     tags: ["MongoDB", "Express", "React", "Node.js", "Cloudinary", "Socket.io"],
     image: "https://picsum.photos/seed/jamia/800/600",
     demo: "https://jamia-connect.vercel.app/",
@@ -83,6 +59,7 @@ export const PROJECTS: Project[] = [
     title: "Handicraft E-commerce",
     description: "A full-stack marketplace for artisanal products.",
     longDescription: "A complete e-commerce solution featuring product management, secure payments, and a refined shopping experience.",
+    summary: "A full-stack artisanal marketplace with role-based access, payment gateway integration, and dynamic product filtering built on Next.js.",
     tags: ["Next.js", "Node.js", "Express", "MongoDB", "Vercel", "Render"],
     image: "https://picsum.photos/seed/craft/800/600",
     demo: "https://handicreaft-client.vercel.app/",
@@ -101,6 +78,7 @@ export const PROJECTS: Project[] = [
     title: "Scalable URL Shortener",
     description: "A professional link management platform with advanced analytics.",
     longDescription: "A full-stack URL shortening service that provides custom slugs, QR code generation, and detailed click tracking for users.",
+    summary: "A professional link management platform with custom slugs, QR codes, and detailed click analytics powered by a high-concurrency Node.js backend.",
     tags: ["Node.js", "Express", "MongoDB", "React", "JWT", "Recharts"],
     image: "https://picsum.photos/seed/url/800/600",
     demo: "https://url-shortener-aneeq.vercel.app/",
@@ -115,50 +93,37 @@ export const PROJECTS: Project[] = [
     architecture: "The backend is a Node.js/Express API that handles high-concurrency redirection. MongoDB is used for storing link metadata and analytics. The frontend is a modular React application using custom hooks for data fetching and Recharts for visualization."
   },
   {
-    id: "slack-meme-bot",
-    title: "Slack AI Meme Bot",
-    description: "An AI-powered bot for generating memes directly in Slack.",
-    longDescription: "Developed a Slack bot using Node.js and Slack Bolt that generates AI-based memes when users tag the bot with a message in Slack channels.",
-    tags: ["Node.js", "Slack Bolt", "Magic Hour SDK", "OAuth"],
-    image: "https://picsum.photos/seed/slack/800/600",
+    id: "pathpilot",
+    title: "PathPilot",
+    description: "AI-Powered Career Intelligence Platform for employability improvement.",
+    longDescription: "PathPilot is a full-stack AI-powered career intelligence platform designed to help students and early-career professionals improve their employability. The system analyzes uploaded resumes, extracts skills, education, and experience using resume parsing techniques, and provides personalized career recommendations. It also supports job matching, interview preparation, AI-generated feedback, and progress tracking. The platform combines traditional NLP, pattern-based extraction, and AI-powered analysis to deliver actionable career insights. PathPilot aims to bridge the gap between academic learning and industry requirements by helping users identify skill gaps, discover relevant opportunities, and follow structured career roadmaps.",
+    summary: "An AI-powered career intelligence platform that parses resumes, extracts skills, and delivers personalized job matching, interview prep, and progress tracking.",
+    tags: ["React.js", "Tailwind CSS", "Node.js", "Express", "MongoDB", "JWT"],
+    image: "https://picsum.photos/seed/pathpilot/800/600",
+    demo: "https://path-pilot-peach.vercel.app/",
     github: "https://github.com/maneeq166",
     features: [
-      "Dynamic meme generation based on user prompts",
-      "Integration with Magic Hour SDK for AI content",
-      "Slack OAuth for multi-workspace installation",
-      "Automated posting to Slack channels",
-      "Interactive bot commands and mentions"
+      "Resume Upload & Analysis",
+      "Skill Extraction & Classification",
+      "Education and Experience Parsing",
+      "AI Career Recommendations",
+      "Job Matching System",
+      "Interview Preparation Module",
+      "AI Feedback Generation",
+      "Progress Tracking Dashboard"
     ],
-    architecture: "Built using Node.js and the Slack Bolt framework. It utilizes the Magic Hour SDK for AI-driven image generation and handles multi-workspace authentication via Slack OAuth."
-  },
-  {
-    id: "discord-meme-bot",
-    title: "Discord AI Meme Bot",
-    description: "An AI-powered bot for generating memes in Discord servers.",
-    longDescription: "Developed a Discord bot using Node.js that generates memes when users tag the bot with a prompt in chat, leveraging AI for dynamic content creation.",
-    tags: ["Node.js", "Discord.js", "Magic Hour SDK"],
-    image: "https://picsum.photos/seed/discord/800/600",
-    github: "https://github.com/maneeq166",
-    features: [
-      "AI-generated memes from user text prompts",
-      "Real-time response to Discord mentions",
-      "Integration with Magic Hour SDK for image processing",
-      "Simple and intuitive bot commands",
-      "Scalable bot architecture for multiple servers"
-    ],
-    architecture: "The bot is built with Discord.js and Node.js. It interfaces with the Magic Hour SDK to generate memes dynamically based on user input received through Discord messages."
+    architecture: "The system uses a React frontend with Tailwind CSS for the UI. Express APIs handle business logic and MongoDB stores user profiles, resumes, jobs, and analytics. The AI/NLP layer processes resumes using regex-based parsing, NLP libraries (Natural, Compromise), and LLM integration for generating recommendations. JWT-based authentication secures user accounts and data."
   }
 ];
 
 export const EXPERIENCES: Experience[] = [
   {
-    company: "FTK - CIT, Jamia Millia Islamia",
-    role: "Full Stack Intern",
-    period: "June 2025 – July 2025",
+    company: "Unthinkable Solutions",
+    role: "Software Engineering Intern",
+    period: "2026 – Present",
     description: [
-      "Developed 'BlogLikho', a secure full-stack blogging platform using PHP and MySQL.",
-      "Implemented robust authentication and role-based access control (RBAC) for users and admins.",
-      "Engineered a comprehensive Admin Dashboard to manage posts, user moderation, and site activity efficiently."
+      "Selected from Jamia Millia Islamia Polytechnic for a company-sponsored role with integrated BITS Work Integrated Learning Program (BTech).",
+      "Building production software and gaining professional industry experience alongside higher education."
     ]
   },
   {
@@ -166,60 +131,32 @@ export const EXPERIENCES: Experience[] = [
     role: "Backend & Full-Stack Developer",
     period: "2023 - Present",
     description: [
-      "Developed AI-powered Discord and Slack bots using Node.js and the Magic Hour SDK for dynamic meme generation.",
-      "Integrated Slack OAuth for multi-workspace installations and automated content delivery.",
-      "Architected and deployed multiple full-stack applications using the MERN and Next.js stacks."
+      "Architected and deployed multiple full-stack applications using the MERN and Next.js stacks.",
+      "Integrating AI capabilities into applications using LLM APIs, embeddings, and RAG pipelines."
     ]
   }
 ];
 
 export const EDUCATION: Education[] = [
   {
-    institution: "Jamia Millia Islamia",
-    degree: "Diploma in Computer Engineering",
-    period: "2023 - 2026",
-    location: "New Delhi, India"
+    institution: "BITS Pilani",
+    degree: "BITS Work Integrated Learning Program (BTech) — Company-Sponsored",
+    period: "2026 – Present",
+    location: "Work Integrated, India"
   },
   {
     institution: "Jamia Millia Islamia",
-    degree: "Senior Secondary (Class X)",
-    period: "2021 - 2023",
+    degree: "Diploma in Computer Engineering",
+    period: "2023 - 2026",
     location: "New Delhi, India"
   }
 ];
 
 export const SKILLS = {
-  languages: ["Java", "Python", "C/C++", "SQL", "JavaScript", "TypeScript", "HTML/CSS"],
-  frameworks: ["React", "Node.js", "Express", "Next.js", "JUnit", "Material-UI", "shadcn"],
-  tools: ["Git", "Docker", "VS Code", "IntelliJ", "MongoDB Atlas", "Vercel", "Render"]
+  languages: ["Python", "Java", "JavaScript", "TypeScript", "C/C++", "SQL", "HTML/CSS"],
+  frameworks: ["React", "Node.js", "Express", "Next.js", "FastAPI"],
+  tools: ["Git", "Docker", "Linux", "PostgreSQL", "Redis", "MongoDB", "Vercel", "Render"]
 };
-
-export const BLOG_POSTS: BlogPost[] = [
-  {
-    id: "1",
-    title: "Building Scalable Real-time Applications with Socket.io",
-    summary: "A deep dive into architecting real-time systems that can handle thousands of concurrent users.",
-    date: "Oct 12, 2025",
-    readTime: "8 min read",
-    tags: ["WebSockets", "Node.js", "Architecture"]
-  },
-  {
-    id: "2",
-    title: "Leveraging Google Gemini for AI-driven SaaS",
-    summary: "How we integrated Gemini Pro Vision into BinBot for high-accuracy waste classification.",
-    date: "Sep 28, 2025",
-    readTime: "6 min read",
-    tags: ["AI", "Gemini", "SaaS"]
-  },
-  {
-    id: "3",
-    title: "The Future of Full-Stack Development with Next.js 15",
-    summary: "Exploring the latest features in Next.js and how they simplify the development lifecycle.",
-    date: "Aug 15, 2025",
-    readTime: "10 min read",
-    tags: ["Next.js", "React", "Frontend"]
-  }
-];
 
 export const MEDIA: MediaItem[] = [
   { title: "Inception", link: "https://www.imdb.com/title/tt1375666/", type: "movie" },

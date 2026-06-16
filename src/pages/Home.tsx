@@ -7,11 +7,9 @@ import { ExperienceSection } from '../components/ExperienceSection';
 import { EducationSection } from '../components/EducationSection';
 import { SkillsSection } from '../components/SkillsSection';
 import { GitHubActivity } from '../components/GitHubActivity';
-import { BlogSection } from '../components/BlogSection';
 import { MediaSection } from '../components/MediaSection';
 import { ContactSection } from '../components/ContactSection';
 import { Marquee } from '../components/Marquee';
-
 const SectionWrapper = ({ children, number, id }: { children: React.ReactNode, number: string, id?: string }) => (
   <motion.div
     id={id}
@@ -99,19 +97,19 @@ export const Home = () => {
         <GitHubActivity />
       </SectionWrapper>
       
-      <SectionWrapper number="06" id="blog">
+      {/* <SectionWrapper number="06" id="blog">
         <div className="bg-zinc-900/20">
           <BlogSection />
         </div>
-      </SectionWrapper>
+      </SectionWrapper> */}
 
-      <SectionWrapper number="07" id="media">
+      <SectionWrapper number="06" id="media">
         <MediaSection />
       </SectionWrapper>
 
       <Marquee text="Available for new projects • Let's build the extraordinary • Engineering digital futures • Systems online •" speed={30} />
 
-      <SectionWrapper number="08" id="contact">
+      <SectionWrapper number="07" id="contact">
         <ContactSection />
       </SectionWrapper>
     </div>

@@ -1,15 +1,19 @@
-import React, { useRef } from 'react';
-import { motion, useScroll, useTransform, useMotionValue, useSpring } from 'motion/react';
-import { ArrowRight } from 'lucide-react';
-import { CurtainBackground } from './CurtainBackground';
+import React, { useRef } from "react";
+import { motion, useTransform, useMotionValue, useSpring } from "motion/react";
+import { ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
+import { WavyBackground } from "./ui/wavy-background";
+import { MagneticButton } from "./ui/magnetic-button";
+
+const WAVE_COLORS = ["#3b82f6", "#60a5fa", "#2563eb", "#93c5fd", "#1d4ed8"];
+const WAVE_GRADIENT = `linear-gradient(125deg, ${WAVE_COLORS.join(", ")})`;
+const WAVE_GRADIENT_INVERSE = `linear-gradient(305deg, ${[...WAVE_COLORS].reverse().join(", ")})`;
 
 export const Hero = () => {
   const containerRef = useRef<HTMLDivElement>(null);
-  const { scrollY } = useScroll();
 
-  // Mouse tracking
-  const mouseX = useMotionValue(0);
-  const mouseY = useMotionValue(0);
+  const mouseX = useMotionValue(0.5);
+  const mouseY = useMotionValue(0.5);
 
   const springConfig = { damping: 30, stiffness: 120 };
   const mouseXSpring = useSpring(mouseX, springConfig);
@@ -17,33 +21,41 @@ export const Hero = () => {
 
   const handleMouseMove = (e: React.MouseEvent) => {
     if (!containerRef.current) return;
-    const { left, top, width, height } = containerRef.current.getBoundingClientRect();
+    const { left, top, width, height } =
+      containerRef.current.getBoundingClientRect();
     const x = (e.clientX - left) / width;
     const y = (e.clientY - top) / height;
     mouseX.set(x);
     mouseY.set(y);
   };
 
-  // Reactive background transforms
-  const spotlightX = useTransform(mouseXSpring, [0, 1], ['30%', '70%']);
-  const spotlightY = useTransform(mouseYSpring, [0, 1], ['30%', '70%']);
+  const spotlightX = useTransform(mouseXSpring, [0, 1], ["30%", "70%"]);
+  const spotlightY = useTransform(mouseYSpring, [0, 1], ["30%", "70%"]);
+  const waveTextX = useTransform(mouseXSpring, [0, 1], [-12, 12]);
+  const waveTextY = useTransform(mouseYSpring, [0, 1], [-6, 6]);
 
   return (
     <section
       ref={containerRef}
       onMouseMove={handleMouseMove}
-      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#050505] px-6 py-24"
+      className="relative flex min-h-[100svh] items-center justify-center overflow-hidden bg-[#050505] px-5 py-24 sm:px-6 lg:px-10"
     >
-      {/* Subtle Reactive Background */}
-      <div className="absolute inset-0 pointer-events-none">
-        <CurtainBackground />
+      <div className="pointer-events-none absolute inset-0 overflow-hidden">
+        <WavyBackground
+          fillContainer
+          colors={WAVE_COLORS}
+          waveOpacity={0.12}
+          blur={20}
+          speed="slow"
+          backgroundFill="#050505"
+        />
 
         <motion.div
           style={{
             left: spotlightX,
             top: spotlightY,
-            x: '-50%',
-            y: '-50%'
+            x: "-50%",
+            y: "-50%",
           }}
           className="absolute w-[800px] h-[800px] bg-blue-500/5 blur-[160px] rounded-full"
         />
@@ -51,80 +63,75 @@ export const Hero = () => {
         <div className="absolute inset-0 opacity-[0.02] bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:80px_80px]" />
       </div>
 
-      <div className="relative z-10 w-full max-w-6xl mx-auto">
+      <div className="relative z-10 mx-auto w-full max-w-6xl">
         <motion.div
           initial={{ opacity: 0, scale: 0.98 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1.2, ease: [0.23, 1, 0.32, 1] }}
-          className="group relative border border-zinc-800/50 rounded-2xl p-12 md:p-24 lg:p-32 overflow-hidden hover:border-zinc-700/80 transition-colors duration-700"
+          className="group relative overflow-hidden rounded-2xl border border-zinc-800/50 px-5 py-12 transition-colors duration-700 hover:border-zinc-700/80 sm:px-10 sm:py-16 md:px-16 md:py-20 lg:px-24 lg:py-24"
         >
-          {/* Internal Frame Content */}
-          <div className="flex flex-col items-center text-center space-y-12 md:space-y-16">
-
-            {/* Headline */}
-            <div className="space-y-4">
-              <h1 className="font-serif text-5xl md:text-7xl lg:text-8xl font-light tracking-tight leading-[1.1] text-zinc-100 italic">
-                Mohammad Aneeq <br />
-                <span className="text-zinc-500 not-italic">Full-Stack Developer</span>
+          <div className="flex flex-col items-center text-center">
+            <div className="space-y-5">
+              <p className="font-mono text-[10px] uppercase tracking-[0.35em] text-blue-400/80">
+                {/* Portfolio / Software Engineering */}
+              </p>
+              <h1 className="font-serif text-5xl font-light italic leading-[1.05] tracking-tight text-zinc-100 sm:text-6xl md:text-7xl lg:text-8xl">
+                Mohammad Aneeq
+                <motion.span
+                  className="hero-wave-text mt-3 block bg-clip-text font-instrument-serif text-4xl font-normal not-italic tracking-tight text-transparent sm:text-5xl md:text-6xl lg:text-7xl"
+                  style={{
+                    backgroundImage: WAVE_GRADIENT,
+                    x: waveTextX,
+                    y: waveTextY,
+                  }}
+                >
+                  Full-Stack Developer
+                </motion.span>
               </h1>
             </div>
 
-            {/* Supporting Description */}
             <motion.p
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4, duration: 0.8 }}
-              className="text-base md:text-lg text-zinc-500 max-w-xl mx-auto leading-relaxed font-light"
+              className="hero-wave-text mx-auto mt-8 max-w-2xl bg-clip-text text-base font-light leading-relaxed text-transparent md:text-lg"
+              style={{
+                backgroundImage: WAVE_GRADIENT_INVERSE,
+                x: waveTextX,
+                y: waveTextY,
+              }}
             >
-              I build scalable web applications and backend systems using modern technologies.
+              I build scalable web applications and backend systems using modern
+              technologies.
             </motion.p>
 
-            {/* Call to Action Buttons */}
             <motion.div
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.6, duration: 0.8 }}
-              className="flex flex-col sm:flex-row items-center justify-center gap-8 pt-8"
+              className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row"
             >
-              <motion.a 
-                href="#projects"
-                whileHover={{ 
-                  scale: 1.02, 
-                  y: -2,
-                }}
-                whileTap={{ scale: 0.98 }}
-                className="relative w-full sm:w-56 px-10 py-5 bg-zinc-900 text-zinc-100 border border-zinc-800 rounded-xl font-bold text-[11px] uppercase tracking-[0.25em] transition-all duration-500 flex items-center justify-center gap-3 group overflow-hidden shadow-[0_0_0_1px_rgba(255,255,255,0.05)] hover:bg-zinc-100 hover:text-zinc-900 hover:border-zinc-200 hover:shadow-[0_20px_40px_-15px_rgba(37,99,235,0.3)]"
-              >
-                {/* Premium Gradient Sweep Layers - Darker Highlights */}
-                <span className="absolute inset-0 gradient-sweep-slow bg-gradient-to-r from-transparent via-blue-900/30 to-transparent pointer-events-none" />
-                <span className="absolute inset-0 gradient-sweep bg-gradient-to-r from-transparent via-blue-600/20 to-transparent pointer-events-none" />
-                
-                <span className="relative z-10 flex items-center gap-3">
-                  Explore Work
-                  <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1.5 transition-transform duration-300" />
-                </span>
-              </motion.a>
+              <MagneticButton strength={0.35} maxDistance={48}>
+                <Link
+                  to="/resume"
+                  className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl bg-linear-to-b from-blue-500 to-blue-700 px-5 py-2.5 text-sm font-medium text-white ring-1 ring-white/20 ring-inset transition-transform duration-150 active:scale-[0.98]"
+                >
+                  View Resume
+                  <ArrowRight className="h-4 w-4" />
+                </Link>
+              </MagneticButton>
 
-              <motion.a
-                href="#contact"
-                whileHover={{
-                  scale: 1.05,
-                  y: -2,
-                  borderColor: "#a1a1aa", // zinc-400
-                  color: "#f4f4f5" // zinc-100
-                }}
-                whileTap={{ scale: 0.98 }}
-                className="w-full sm:w-56 px-10 py-5 border border-zinc-800 rounded-xl font-bold text-[11px] uppercase tracking-[0.25em] text-zinc-400 transition-all duration-300 flex items-center justify-center relative overflow-hidden group shadow-[0_0_0_1px_rgba(255,255,255,0.02)] hover:shadow-[0_20px_40px_-15px_rgba(255,255,255,0.05)]"
-              >
-                {/* Continuous Subtle Pulse */}
-                <div className="absolute inset-0 animate-subtle-pulse border border-zinc-700 rounded-xl pointer-events-none" />
-                <div className="absolute inset-0 bg-zinc-900/0 group-hover:bg-zinc-900/50 transition-colors duration-300" />
-                <span className="relative z-10">Get in touch</span>
-              </motion.a>
+              <MagneticButton strength={0.25} maxDistance={40}>
+                <a
+                  href="#projects"
+                  className="inline-flex min-h-11 items-center justify-center rounded-xl border border-zinc-800 bg-zinc-950/60 px-5 py-2.5 text-sm font-medium text-zinc-300 transition-colors hover:border-zinc-700 hover:text-zinc-100"
+                >
+                  Explore Work
+                </a>
+              </MagneticButton>
             </motion.div>
           </div>
 
-          {/* Subtle Frame Accents */}
           <div className="absolute top-0 left-0 w-8 h-8 border-t border-l border-zinc-700/30 rounded-tl-2xl" />
           <div className="absolute top-0 right-0 w-8 h-8 border-t border-r border-zinc-700/30 rounded-tr-2xl" />
           <div className="absolute bottom-0 left-0 w-8 h-8 border-b border-l border-zinc-700/30 rounded-bl-2xl" />
@@ -132,15 +139,16 @@ export const Hero = () => {
         </motion.div>
       </div>
 
-      {/* Scroll Indicator */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.5, duration: 1 }}
-        className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-4"
+        className="absolute bottom-8 left-1/2 z-10 hidden -translate-x-1/2 flex-col items-center gap-4 text-center sm:flex"
       >
-        <div className="w-[1px] h-12 bg-gradient-to-b from-zinc-800 to-transparent" />
-        <span className="text-[10px] font-mono uppercase tracking-widest text-zinc-700">Scroll to explore</span>
+        <div className="h-12 w-px bg-linear-to-b from-zinc-800 to-transparent" />
+        <span className="text-[10px] font-mono uppercase tracking-widest text-zinc-700">
+          Scroll to explore
+        </span>
       </motion.div>
     </section>
   );

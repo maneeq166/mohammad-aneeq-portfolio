@@ -1,40 +1,17 @@
-import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
+import React, { useEffect } from 'react';
+import { motion } from 'motion/react';
 import { 
   Github, 
   ExternalLink,
   Code2,
   ChevronLeft,
-  Sparkles,
-  Loader2
 } from 'lucide-react';
 import { Project } from '../constants';
-import { GoogleGenAI } from "@google/genai";
 
 export const ProjectDetail = ({ project, onClose }: { project: Project; onClose: () => void }) => {
-  const [aiSummary, setAiSummary] = useState<string | null>(null);
-  const [isGenerating, setIsGenerating] = useState(false);
-
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
-
-  const generateSummary = async () => {
-    setIsGenerating(true);
-    try {
-      const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
-      const response = await ai.models.generateContent({
-        model: "gemini-3-flash-preview",
-        contents: `Summarize this project in one impactful sentence for a senior engineer. Focus on the technical value: ${project.title} - ${project.longDescription}. Tech: ${project.tags.join(', ')}`,
-      });
-      setAiSummary(response.text || "Failed to generate summary.");
-    } catch (error) {
-      console.error("AI Summary Error:", error);
-      setAiSummary("Could not generate AI summary at this time.");
-    } finally {
-      setIsGenerating(false);
-    }
-  };
 
   return (
     <motion.div 
@@ -88,9 +65,10 @@ export const ProjectDetail = ({ project, onClose }: { project: Project; onClose:
           </h1>
           
           <div className="aspect-video rounded-2xl overflow-hidden bg-zinc-900 border border-zinc-800/50 shadow-2xl">
-            <img 
-              src={project.image} 
+            <img
+              src={project.image}
               alt={project.title}
+              loading="lazy"
               className="w-full h-full object-cover"
               referrerPolicy="no-referrer"
             />
@@ -101,30 +79,14 @@ export const ProjectDetail = ({ project, onClose }: { project: Project; onClose:
         <section className="space-y-6">
           <div className="flex items-center justify-between">
             <h2 className="text-2xl font-bold text-white">Overview</h2>
-            <button 
-              onClick={generateSummary}
-              disabled={isGenerating}
-              className="flex items-center gap-2 text-[10px] font-mono font-bold uppercase tracking-widest text-zinc-500 hover:text-blue-400 transition-colors disabled:opacity-50 group"
-            >
-              {isGenerating ? <Loader2 className="w-3 h-3 animate-spin" /> : <Sparkles className="w-3 h-3 group-hover:scale-125 transition-transform" />}
-              AI Synthesis
-            </button>
           </div>
           <div className="space-y-6">
             <p className="text-lg text-zinc-400 leading-relaxed font-light">
               {project.longDescription}
             </p>
-            <AnimatePresence>
-              {aiSummary && (
-                <motion.div
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  className="p-6 bg-blue-500/5 rounded-xl border border-blue-500/20 text-blue-400 text-base font-light leading-relaxed italic"
-                >
-                  "{aiSummary}"
-                </motion.div>
-              )}
-            </AnimatePresence>
+            <div className="p-6 bg-blue-500/5 rounded-xl border border-blue-500/20 text-blue-400 text-base font-light leading-relaxed italic">
+              &ldquo;{project.summary}&rdquo;
+            </div>
           </div>
         </section>
 

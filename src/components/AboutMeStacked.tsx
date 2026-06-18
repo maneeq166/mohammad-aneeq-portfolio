@@ -23,7 +23,7 @@ export const AboutMeStacked = memo(() => {
                   a <span className="italic font-serif text-blue-400">full-stack developer</span> building 
                   scalable web applications.
                 </p>
-                <p className="text-zinc-500 text-lg font-light leading-relaxed">
+                <p className="text-zinc-400 text-lg font-light leading-relaxed">
                   Software Engineering Intern at <span className="text-zinc-300 font-medium">Unthinkable Solutions</span>, 
                   pursuing a company-sponsored <span className="text-zinc-300 font-medium border-b border-zinc-800">BITS BTech</span>.
                 </p>

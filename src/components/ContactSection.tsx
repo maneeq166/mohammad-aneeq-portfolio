@@ -1,6 +1,7 @@
+import { memo } from 'react';
 import { Mail, Github, Linkedin } from 'lucide-react';
 
-export const ContactSection = () => {
+export const ContactSection = memo(() => {
   return (
     <footer id="contact" className="section-padding relative overflow-hidden border-t border-zinc-800/50">
       <div className="absolute bottom-0 right-0 w-[50%] h-[50%] bg-blue-500/5 blur-[150px] rounded-full pointer-events-none" />
@@ -11,7 +12,7 @@ export const ContactSection = () => {
             <h2 className="font-serif italic text-6xl md:text-8xl font-light text-zinc-100 tracking-tight leading-none">
               Let's build the <span className="text-zinc-500 not-italic">extraordinary</span> together.
             </h2>
-            <p className="text-xl text-zinc-500 font-light leading-relaxed">
+            <p className="text-xl text-zinc-400 font-light leading-relaxed">
               Currently accepting new engineering challenges and technical collaborations.
             </p>
           </div>
@@ -22,7 +23,7 @@ export const ContactSection = () => {
               className="group flex items-center justify-between p-8 glass-card rounded-[2rem] border-zinc-800/50 hover:bg-zinc-100 hover:text-zinc-900 transition-all duration-500"
             >
               <div className="space-y-1">
-                <p className="text-[10px] font-mono uppercase tracking-widest text-zinc-500 group-hover:text-zinc-600">Direct Message</p>
+                <p className="text-[10px] font-mono uppercase tracking-widest text-zinc-400 group-hover:text-zinc-500">Direct Message</p>
                 <p className="text-xl font-medium">Email</p>
               </div>
               <Mail className="w-6 h-6 group-hover:rotate-[-45deg] transition-transform" />
@@ -35,7 +36,7 @@ export const ContactSection = () => {
                 rel="noopener noreferrer" 
                 className="group flex items-center justify-between gap-4 p-6 glass-card rounded-3xl border-zinc-800/50 hover:bg-zinc-900/80 transition-all"
               >
-                <span className="text-sm font-mono uppercase tracking-widest text-zinc-500 group-hover:text-zinc-100">GitHub</span>
+                <span className="text-sm font-mono uppercase tracking-widest text-zinc-400 group-hover:text-zinc-100">GitHub</span>
                 <Github className="w-4 h-4 text-zinc-700 group-hover:text-zinc-100 shrink-0" />
               </a>
               <a 
@@ -44,7 +45,7 @@ export const ContactSection = () => {
                 rel="noopener noreferrer" 
                 className="group flex items-center justify-between gap-4 p-6 glass-card rounded-3xl border-zinc-800/50 hover:bg-zinc-900/80 transition-all"
               >
-                <span className="text-sm font-mono uppercase tracking-widest text-zinc-500 group-hover:text-zinc-100">LinkedIn</span>
+                <span className="text-sm font-mono uppercase tracking-widest text-zinc-400 group-hover:text-zinc-100">LinkedIn</span>
                 <Linkedin className="w-4 h-4 text-zinc-700 group-hover:text-zinc-100 shrink-0" />
               </a>
             </div>
@@ -56,12 +57,9 @@ export const ContactSection = () => {
             <p>© 2026 Mohammad Aneeq</p>
             <p>All rights reserved</p>
           </div>
-          <div className="flex gap-8">
-            <p>Built with Precision</p>
-            <p>V. 2.0.0</p>
-          </div>
+          <div className="flex gap-8" />
         </div>
       </div>
     </footer>
   );
-};
+});

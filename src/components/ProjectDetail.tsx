@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { memo, useEffect } from 'react';
 import { motion } from 'motion/react';
 import { 
   Github, 
@@ -8,7 +8,7 @@ import {
 } from 'lucide-react';
 import { Project } from '../constants';
 
-export const ProjectDetail = ({ project, onClose }: { project: Project; onClose: () => void }) => {
+export const ProjectDetail = memo(({ project, onClose }: { project: Project; onClose: () => void }) => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -157,7 +157,7 @@ export const ProjectDetail = ({ project, onClose }: { project: Project; onClose:
 
         {/* Footer Info */}
         <div className="pt-20 border-t border-zinc-800/50 flex flex-col md:flex-row justify-between items-center gap-8">
-          <div className="flex items-center gap-6 text-[10px] font-mono text-zinc-500 uppercase tracking-[0.2em]">
+          <div className="flex items-center gap-6 text-[10px] font-mono text-zinc-400 uppercase tracking-[0.2em]">
             <span>Built with:</span>
             <div className="flex items-center gap-6">
               <div className="flex items-center gap-2 group">
@@ -186,4 +186,4 @@ export const ProjectDetail = ({ project, onClose }: { project: Project; onClose:
       </div>
     </motion.div>
   );
-};
+});

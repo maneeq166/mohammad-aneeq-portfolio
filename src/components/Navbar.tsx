@@ -66,7 +66,7 @@ export const Navbar = memo(() => {
                 className={`relative rounded-full px-2.5 py-1.5 text-[9px] font-mono uppercase tracking-[0.18em] transition-all duration-300 sm:px-3.5 sm:py-2 sm:text-[10px] sm:tracking-[0.22em] ${
                   active
                     ? 'bg-blue-500/10 text-blue-400'
-                    : 'text-zinc-500 hover:bg-zinc-900/60 hover:text-zinc-100'
+                    : 'text-zinc-400 hover:bg-zinc-900/60 hover:text-zinc-100'
                 }`}
               >
                 {item.name}

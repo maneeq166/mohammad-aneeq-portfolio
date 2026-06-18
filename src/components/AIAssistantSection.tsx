@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useRef, useEffect } from 'react';
+import React, { memo, useState, useCallback, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { MessageCircle, X, RotateCcw } from 'lucide-react';
 import { FEATURED_QA_PAIRS } from '../data/qa';
@@ -56,7 +56,7 @@ const TypingIndicator = () => (
   </div>
 );
 
-export const AIAssistantSection = () => {
+export const AIAssistantSection = memo(() => {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([]);
   const [isTyping, setIsTyping] = useState(false);
@@ -247,4 +247,4 @@ export const AIAssistantSection = () => {
       </AnimatePresence>
     </>
   );
-};
+});

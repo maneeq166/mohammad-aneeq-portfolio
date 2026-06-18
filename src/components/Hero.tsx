@@ -146,7 +146,7 @@ export const Hero = memo(() => {
         className="absolute bottom-8 left-1/2 z-10 hidden -translate-x-1/2 flex-col items-center gap-4 text-center sm:flex"
       >
         <div className="h-12 w-px bg-linear-to-b from-zinc-800 to-transparent" />
-        <span className="text-[10px] font-mono uppercase tracking-widest text-zinc-700">
+        <span className="text-[10px] font-mono uppercase tracking-widest text-zinc-600">
           Scroll to explore
         </span>
       </motion.div>

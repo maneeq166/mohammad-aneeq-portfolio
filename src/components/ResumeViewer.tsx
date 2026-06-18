@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { memo, useState } from 'react';
 import { motion } from 'motion/react';
 import { Download, ExternalLink, FileText, AlertTriangle } from 'lucide-react';
 
@@ -8,7 +8,7 @@ interface ResumeViewerProps {
   className?: string;
 }
 
-export const ResumeViewer = ({
+export const ResumeViewer = memo(({
   pdfUrl,
   title = 'Resume',
   className = '',
@@ -129,4 +129,4 @@ export const ResumeViewer = ({
       <div className="pointer-events-none absolute right-0 bottom-0 h-6 w-6 rounded-br-2xl border-b border-r border-zinc-700/30" />
     </div>
   );
-};
+});

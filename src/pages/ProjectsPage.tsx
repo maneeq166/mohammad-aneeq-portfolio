@@ -32,7 +32,7 @@ export const ProjectsPage = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="text-zinc-500 text-lg md:text-xl font-light leading-relaxed"
+            className="text-zinc-400 text-lg md:text-xl font-light leading-relaxed"
           >
             I've worked on tons of little projects over the years but these are the ones that I'm most proud of. 
             Many of them are open-source, so if you see something that piques your interest, 
@@ -59,14 +59,14 @@ export const ProjectsPage = () => {
                 <h3 className="text-lg font-semibold text-zinc-100 group-hover:text-white transition-colors tracking-tight">
                   {project.title}
                 </h3>
-                <p className="text-sm text-zinc-500 leading-snug line-clamp-2 font-light group-hover:text-zinc-400 transition-colors">
+                <p className="text-sm text-zinc-400 leading-snug line-clamp-2 group-hover:text-zinc-300 transition-colors">
                   {project.description}
                 </p>
               </div>
 
               {/* Hover Indicator */}
               <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-all translate-x-2 group-hover:translate-x-0">
-                <ExternalLink className="w-3 h-3 text-zinc-500" />
+                <ExternalLink className="w-3 h-3 text-zinc-400" />
               </div>
             </motion.div>
           ))}
@@ -74,7 +74,7 @@ export const ProjectsPage = () => {
 
         {/* Footer Info */}
         <div className="pt-20 border-t border-zinc-800/50 flex flex-col md:flex-row justify-between items-center gap-8">
-          <div className="flex items-center gap-6 text-[10px] font-mono text-zinc-500 uppercase tracking-[0.2em]">
+          <div className="flex items-center gap-6 text-[10px] font-mono text-zinc-400 uppercase tracking-[0.2em]">
             <span>Built with:</span>
             <div className="flex items-center gap-6">
               <div className="flex items-center gap-2 group">

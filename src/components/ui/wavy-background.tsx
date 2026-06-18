@@ -1,7 +1,7 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { memo, useEffect, useRef, useState } from "react";
 import { createNoise3D } from "simplex-noise";
 
-export const WavyBackground = ({
+export const WavyBackground = memo(({
   children,
   className,
   containerClassName,
@@ -155,4 +155,4 @@ export const WavyBackground = ({
       ) : null}
     </div>
   );
-};
+});

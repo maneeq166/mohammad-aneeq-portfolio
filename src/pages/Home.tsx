@@ -47,10 +47,10 @@ export const Home = () => {
               </h2>
               <div className="space-y-6 max-w-2xl">
                 <p className="text-xl md:text-2xl text-zinc-400 font-light leading-relaxed">
-                  I've engineered a diverse range of digital solutions, from <span className="text-zinc-100 font-medium">high-performance backend systems</span> to 
-                  <span className="text-zinc-100 font-medium">immersive frontend experiences</span>.
+                  I've engineered a diverse range of digital solutions, from <span className="text-zinc-100 font-medium">high-performance backend systems</span> to  
+                  <span className="text-zinc-100 font-medium"> immersive frontend experiences</span>.
                 </p>
-                <p className="text-zinc-500 text-lg font-light leading-relaxed">
+                <p className="text-zinc-400 text-lg font-light leading-relaxed">
                   Each project is a deep dive into specific technical challenges, focusing on scalability, 
                   performance, and refined user interactions.
                 </p>
@@ -58,25 +58,25 @@ export const Home = () => {
             </div>
             
             <motion.div
-              whileHover={{ x: 10 }}
+              whileHover={{ x: 8 }}
               transition={{ type: "spring", stiffness: 400, damping: 10 }}
             >
               <Link 
                 to="/projects" 
-                className="inline-flex items-center gap-4 group"
+                className="inline-flex items-center gap-3 rounded-xl border border-zinc-800 bg-zinc-950/60 px-5 py-3 text-sm font-medium text-zinc-200 transition-all hover:border-zinc-700 hover:text-zinc-100 hover:bg-zinc-900/60 group"
               >
-                <span className="text-sm font-mono uppercase tracking-[0.3em] text-zinc-100 group-hover:text-blue-400 transition-colors">
+                <span className="font-mono uppercase tracking-[0.3em] text-[10px]">
                   Explore all projects
                 </span>
-                <div className="w-12 h-[1px] bg-zinc-800 group-hover:bg-blue-400 transition-colors" />
-                <div className="w-2 h-2 rounded-full bg-blue-500 animate-pulse" />
+                <div className="w-6 h-px bg-zinc-700 transition-colors group-hover:bg-blue-400" />
+                <div className="w-2 h-2 rounded-full bg-blue-500/80 group-hover:bg-blue-400 transition-colors" />
               </Link>
             </motion.div>
           </div>
         </section>
       </SectionWrapper>
 
-      <Marquee text="Full Stack Engineering • Neural Interfaces • Digital Trajectories • High Performance Systems • Refined Aesthetics •" />
+      <Marquee text="Full Stack Engineering •" />
 
       <SectionWrapper number="03" id="experience">
         <ExperienceSection />
@@ -101,7 +101,7 @@ export const Home = () => {
         <MediaSection />
       </SectionWrapper>
 
-      <Marquee text="Available for new projects • Let's build the extraordinary • Engineering digital futures • Systems online •" speed={30} />
+      <Marquee text="Available for new projects •" speed={30} />
 
       <SectionWrapper number="07" id="contact">
         <ContactSection />

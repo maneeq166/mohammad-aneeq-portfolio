@@ -1,7 +1,7 @@
-import React, { useRef, useState } from 'react';
+import React, { memo, useRef, useState } from 'react';
 import { motion } from 'motion/react';
 
-export const MagneticButton = ({
+export const MagneticButton = memo(({
   children,
   strength = 0.8,
   maxDistance = 100,
@@ -58,4 +58,4 @@ export const MagneticButton = ({
       </motion.div>
     </div>
   );
-};
+});

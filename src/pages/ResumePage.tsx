@@ -42,7 +42,7 @@ export const ResumePage = () => {
             </div>
             <Link
               to="/contact"
-              className="group inline-flex w-fit items-center gap-2 rounded-xl border border-zinc-800/70 bg-zinc-900/40 px-4 py-2.5 text-[10px] font-mono uppercase tracking-[0.18em] text-zinc-500 transition-all hover:border-zinc-700 hover:text-zinc-200"
+              className="group inline-flex w-fit items-center gap-2 rounded-xl border border-zinc-800/70 bg-zinc-900/40 px-4 py-2.5 text-[10px] font-mono uppercase tracking-[0.18em] text-zinc-400 transition-all hover:border-zinc-700 hover:text-zinc-200"
             >
               <Mail className="h-3.5 w-3.5 text-blue-400" />
               Contact

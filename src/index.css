@@ -24,9 +24,21 @@
     font-feature-settings: "cv02", "cv03", "cv04", "cv11";
   }
 
-  /* Hide default cursor globally */
+  /* Hide default cursor only on desktop hover-capable devices */
+  @media (min-width: 768px) and (hover: hover) and (pointer: fine) {
+    * {
+      cursor: none !important;
+    }
+  }
+
+  /* Explicitly restore cursor on touch devices (handles edge cases where hover query mismatches) */
+  @media (max-width: 767px), (hover: none) and (pointer: coarse) {
+    * {
+      cursor: auto !important;
+    }
+  }
+
   * {
-    cursor: none !important;
     @apply border-border outline-ring/50;
   }
 
@@ -66,18 +78,36 @@
   @apply py-32 px-6 md:px-12 lg:px-24 max-w-7xl mx-auto;
 }
 
-.github-activity-calendar {
-  width: 100% !important;
+.github-activity-scroll {
   max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: #27272a transparent;
+}
+
+.github-activity-calendar {
+  width: max-content !important;
+  min-width: 100%;
 }
 
 .github-activity-calendar .react-activity-calendar__scroll-container {
-  overflow-x: hidden !important;
+  overflow-x: auto !important;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: #27272a transparent;
 }
 
 .github-activity-calendar .react-activity-calendar__calendar {
-  width: 100%;
+  width: max-content;
   height: auto;
+}
+
+@media (max-width: 767px) {
+  .github-activity-calendar {
+    min-width: 58rem;
+  }
 }
 
 ::-webkit-scrollbar {

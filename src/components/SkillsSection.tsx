@@ -1,6 +1,7 @@
+import { memo } from 'react';
 import { SKILLS } from '../constants';
 
-export const SkillsSection = () => {
+export const SkillsSection = memo(() => {
   return (
     <section className="section-padding relative overflow-hidden h-full">
       <div className="absolute top-0 left-0 w-full h-full bg-tech-grid opacity-10 pointer-events-none" />
@@ -10,7 +11,6 @@ export const SkillsSection = () => {
           <h2 className="font-serif italic text-4xl md:text-5xl font-light text-zinc-100 tracking-tight">
             Technical <span className="text-zinc-500 not-italic">Arsenal</span>
           </h2>
-          <p className="text-zinc-500 font-mono text-[10px] uppercase tracking-[0.3em]">Core competencies and specialized tooling</p>
         </div>
 
         <div className="grid gap-12">
@@ -48,4 +48,4 @@ export const SkillsSection = () => {
       </div>
     </section>
   );
-};
+});

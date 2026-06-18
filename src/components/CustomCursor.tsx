@@ -1,7 +1,13 @@
 import { useEffect, useRef, useState } from 'react';
 import { motion, useMotionValue, useSpring } from 'motion/react';
 
+function isDesktopCursorDevice(): boolean {
+  if (typeof window === 'undefined') return false;
+  return window.matchMedia('(min-width: 768px) and (hover: hover) and (pointer: fine)').matches;
+}
+
 export const CustomCursor = () => {
+  const [enableCursor, setEnableCursor] = useState(isDesktopCursorDevice);
   const [isClicked, setIsClicked] = useState(false);
   const isVisibleRef = useRef(false);
   const [show, setShow] = useState(false);
@@ -13,6 +19,22 @@ export const CustomCursor = () => {
   const cursorYSpring = useSpring(cursorY, springConfig);
 
   useEffect(() => {
+    const mediaQuery = window.matchMedia('(min-width: 768px) and (hover: hover) and (pointer: fine)');
+    const updateCursorSupport = () => setEnableCursor(mediaQuery.matches);
+
+    updateCursorSupport();
+    mediaQuery.addEventListener('change', updateCursorSupport);
+
+    return () => mediaQuery.removeEventListener('change', updateCursorSupport);
+  }, []);
+
+  useEffect(() => {
+    if (!enableCursor) {
+      isVisibleRef.current = false;
+      setShow(false);
+      return;
+    }
+
     const moveCursor = (e: MouseEvent) => {
       cursorX.set(e.clientX);
       cursorY.set(e.clientY);
@@ -46,10 +68,13 @@ export const CustomCursor = () => {
       document.removeEventListener('mouseleave', handleMouseLeave);
       document.removeEventListener('mouseenter', handleMouseEnter);
     };
-  }, [cursorX, cursorY]);
+  }, [cursorX, cursorY, enableCursor]);
+
+  if (!enableCursor) return null;
 
   return (
     <motion.div
+      aria-hidden="true"
       className="fixed top-0 left-0 w-8 h-8 bg-blue-500/20 border border-blue-500/30 rounded-full pointer-events-none z-[9999] backdrop-blur-[2px]"
       style={{
         translateX: cursorXSpring,

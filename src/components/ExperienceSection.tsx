@@ -1,7 +1,8 @@
+import { memo } from 'react';
 import { motion } from 'motion/react';
 import { EXPERIENCES } from '../constants';
 
-export const ExperienceSection = () => {
+export const ExperienceSection = memo(() => {
   return (
     <section id="experience" className="section-padding relative overflow-hidden">
       <div className="absolute top-0 right-0 w-[30%] h-[30%] bg-blue-500/5 blur-[100px] rounded-full pointer-events-none" />
@@ -11,7 +12,6 @@ export const ExperienceSection = () => {
           <h2 className="font-serif italic text-5xl md:text-7xl font-light text-zinc-100 tracking-tight">
             Professional <span className="text-zinc-500 not-italic">Trajectory</span>
           </h2>
-          <p className="text-zinc-500 font-mono text-xs uppercase tracking-[0.3em]">Chronological record of engineering impact</p>
         </div>
 
         <div className="space-y-16">
@@ -33,7 +33,7 @@ export const ExperienceSection = () => {
                   </h3>
                   <p className="text-zinc-400 font-medium text-lg">{exp.company}</p>
                 </div>
-                <span className="text-[10px] font-mono font-bold text-zinc-500 bg-zinc-900/50 border border-zinc-800 px-4 py-2 rounded-full uppercase tracking-widest shrink-0">
+                <span className="text-[10px] font-mono font-bold text-zinc-400 bg-zinc-900/50 border border-zinc-800 px-4 py-2 rounded-full uppercase tracking-widest shrink-0">
                   {exp.period}
                 </span>
               </div>
@@ -42,7 +42,7 @@ export const ExperienceSection = () => {
                 {exp.description.map((item, j) => (
                   <div key={j} className="flex gap-4 p-6 rounded-3xl bg-zinc-900/30 border border-zinc-800/50 hover:bg-zinc-900/50 transition-colors">
                     <div className="mt-1.5 w-1 h-1 rounded-full bg-blue-500/50 shrink-0" />
-                    <p className="text-zinc-500 text-sm leading-relaxed font-light">
+                    <p className="text-zinc-400 text-sm leading-relaxed font-light">
                       {item}
                     </p>
                   </div>
@@ -54,4 +54,4 @@ export const ExperienceSection = () => {
       </div>
     </section>
   );
-};
+});
